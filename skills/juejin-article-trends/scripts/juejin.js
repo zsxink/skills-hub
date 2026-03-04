@@ -176,15 +176,30 @@ async function main() {
         const categoryId = args[1];
         const type = args[2] || 'hot';
         const limit = parseInt(args[3]) || 20;
-        
+
         if (!categoryId) {
           console.error('Error: 请提供分类ID');
           console.error('用法: node juejin.js articles <category_id> [type] [limit]');
           process.exit(1);
         }
-        
+
         const articles = await getArticles(categoryId, type, limit);
-        console.log(JSON.stringify(articles, null, 2));
+
+        // 以易读格式输出文章列表
+        console.log(`\n找到 ${articles.length} 篇${type === 'hot' ? '热门' : '最新'}文章:\n`);
+
+        articles.forEach((article, index) => {
+          console.log(`## ${index + 1}. ${article.title}`);
+          console.log(`- **作者**: ${article.author}`);
+          console.log(`- **热度**: ${article.popularity}`);
+          console.log(`- **阅读**: ${article.viewCount} | **点赞**: ${article.likeCount} | **收藏**: ${article.collectCount} | **评论**: ${article.commentCount}`);
+          if (article.brief) {
+            console.log(`- **摘要**: ${article.brief}`);
+          }
+          console.log(`- **链接**: ${article.url}`);
+          console.log('');
+        });
+
         break;
       }
       
