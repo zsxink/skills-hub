@@ -97,6 +97,8 @@ node scripts/a-stock-report.js > %USERPROFILE%\documents\reports\a-stock-daily-r
 
 **市场情绪**: 偏多/偏空/中性
 
+⚠️ **数据获取提示**: 以下数据获取失败 (指数数据 - 上证指数、深证成指、创业板指、科创板指)，可能原因：非交易时间/网络异常/API 暂时不可用
+
 ---
 
 ## 🔥 热门板块 TOP 5
