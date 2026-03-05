@@ -17,64 +17,24 @@ description: A股每日简报自动生成系统。抓取东方财富实时数据
 
 ## 快速开始
 
-### 1. 手动运行
+### 生成日报
 
-#### Linux/Mac:
 ```bash
-cd ~/.openclaw/workspace/skills/a-stock-daily-report
 node scripts/a-stock-report.js
 ```
 
-#### Windows:
-```bash
-cd C:\Users\xian\.openclaw\workspace\skills\a-stock-daily-report
-node scripts\a-stock-report.js
-```
+直接运行即可生成 A股日报报告。
 
-### 2. 配置定时任务
+### 保存到文件（可选）
 
 ```bash
-# 每天15:30自动运行（建议在收盘后30分钟）
-openclaw cron add --schedule "30 15 * * 1-5" \
-  --timezone "Asia/Shanghai" \
-  --command "node ~/.openclaw/workspace/skills/a-stock-daily-report/scripts/a-stock-report.js"
+# Linux/Mac
+mkdir -p ~/documents/reports/a-stock-daily-report
+node scripts/a-stock-report.js > ~/documents/reports/a-stock-daily-report/report_$(date +%Y%m%d).md
 
-# 或每天16:00运行（收盘后1小时）
-openclaw cron add --schedule "0 16 * * 1-5" \
-  --timezone "Asia/Shanghai" \
-  --command "node ~/.openclaw/workspace/skills/a-stock-daily-report/scripts/a-stock-report.js"
-```
-
-**注意**：A股收盘时间为15:00，建议在 15:30-16:00 之间运行，此时市场已收盘，数据较为完整且 API 可用。
-
-### 3. 推送消息（推荐）
-
-技能将报告输出到标准输出，OpenClaw 可以捕获并发送到各种渠道：
-
-```bash
-# 推送到飞书
-node scripts/a-stock-report.js | openclaw message send --channel feishu
-
-# 推送到其他渠道
-node scripts/a-stock-report.js | openclaw message send --channel <channel>
-```
-
-### 4. 保存到文件（可选）
-
-如果需要将报告保存到本地文件：
-
-```bash
-# 保存到默认目录（~/.openclaw/workspace/reports/a-stock-daily-report/）
-node scripts/a-stock-report.js > ~/.openclaw/workspace/reports/a-stock-daily-report/report_$(date +%Y%m%d).md
-```
-
-## 文件说明
-
-```
-a-stock-daily-report/
-├── SKILL.md              # 本文档
-└── scripts/
-    └── a-stock-report.js    # A股日报生成脚本（Node.js版本）
+# Windows
+if not exist %USERPROFILE%\documents\reports\a-stock-daily-report mkdir %USERPROFILE%\documents\reports\a-stock-daily-report
+node scripts/a-stock-report.js > %USERPROFILE%\documents\reports\a-stock-daily-report\report_%date:~0,4%%date:~5,2%%date:~8,2%.md
 ```
 
 ## 数据来源
@@ -87,33 +47,11 @@ a-stock-daily-report/
 ### API 使用限制
 
 - **指数数据 API 在非交易时间（晚间、周末）可能关闭**
-- 建议运行时间：交易日 9:30-15:00
+- 建议运行时间：交易日收盘后 15:30-16:00（A股15:00收盘）
 - 如需在晚间获取数据，建议：
   1. **缓存机制**：在收盘前运行一次并缓存数据
   2. **手动维护**：使用本地存储的指数数据
   3. **降级处理**：指数数据不可用时仍可生成板块数据报告
-
-## 自定义
-
-### 修改推送时间
-
-编辑 crontab：
-```bash
-crontab -e
-```
-
-修改时间表达式：
-```cron
-# 每天16:00（工作日）
-0 16 * * 1-5 node ~/.openclaw/workspace/skills/a-stock-daily-report/scripts/a-stock-report.js | openclaw message send --channel feishu
-
-# 每天15:30（工作日）
-30 15 * * 1-5 node ~/.openclaw/workspace/skills/a-stock-daily-report/scripts/a-stock-report.js | openclaw message send --channel feishu
-```
-
-### 修改报告内容
-
-编辑 `scripts/a-stock-report.js` 中的 `generateReport()` 函数。
 
 ## 环境变量
 
@@ -124,40 +62,15 @@ crontab -e
 - Node.js 14+
 - 无需额外依赖包（使用 Node.js 内置模块）
 
-## 工作原理
-
-1. 从东方财富 API 获取实时大盘指数数据（上证、深证、创业板）
-2. 从东方财富 API 获取板块排行数据
-3. 分析数据并生成 Markdown 格式的日报
-4. 将报告输出到标准输出（stdout），日志输出到标准错误（stderr）
-5. OpenClaw 或其他工具可以通过管道捕获报告并发送到各种渠道
-
 ## 故障排除
 
-### 数据抓取失败
+### 运行失败或数据异常
 
-1. 检查网络连接
-2. 检查 Node.js 是否已安装：`node --version`
-3. 查看日志输出（stderr）
-
-### 推送失败
-
-1. 检查 OpenClaw 消息发送功能是否正常
-2. 检查目标渠道配置
-3. 使用 `|` 管道将报告输出到 OpenClaw
-
-### 运行失败
-
-1. 确认 Node.js 版本 >= 14
-2. 检查脚本路径是否正确
+1. 确认 Node.js 版本 >= 14：`node --version`
+2. 检查网络连接
 3. 查看错误日志（stderr 输出）
-
-### 保存文件失败
-
-如果需要保存到文件，确保目录存在：
-```bash
-mkdir -p ~/.openclaw/workspace/reports/a-stock-daily-report
-```
+4. 确认 API 是否可用（非交易时间、周末/节假日可能关闭）
+5. 检查是否为交易日并确认运行时间合适
 
 ## 输出格式
 
