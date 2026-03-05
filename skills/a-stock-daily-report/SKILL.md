@@ -44,6 +44,10 @@ node scripts/a-stock-report.js > %USERPROFILE%\documents\reports\a-stock-daily-r
 
 ## ⚠️ 重要提示
 
+### 数据获取失败处理
+
+当部分数据获取失败时（如指数或板块数据），报告会继续生成并在报告中标注失败原因，对应数据显示为 `--`。
+
 ### API 使用限制
 
 - **指数数据 API 在非交易时间（晚间、周末）可能关闭**

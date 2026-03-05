@@ -101,7 +101,7 @@ async function fetchIndexData() {
     { secid: '1.000688', key: 'kc_index', name: '科创板指' },
   ];
 
-  const result = {};
+  const result = { failed: [], success: [] };
 
   for (const { secid, key, name } of indicesConfig) {
     const params = new URLSearchParams({
@@ -123,11 +123,15 @@ async function fetchIndexData() {
         const d = data.data;
         result[key] = (d.f43 / 100).toFixed(2);
         result[`${key}_change`] = `${(d.f170 / 100).toFixed(2)}%`;
+        result.success.push(name);
+      } else {
+        throw new Error('数据为空');
       }
     } catch (e) {
       console.error(`[ERROR] 获取 ${name} 失败: ${e.message}`);
       result[key] = '--';
       result[`${key}_change`] = '--';
+      result.failed.push(name);
     }
   }
 
@@ -138,43 +142,47 @@ async function fetchIndexData() {
  * 分析数据并构建报告数据
  */
 function analyzeAndBuildReportData(boards, indices) {
-  if (!boards || boards.length === 0) {
-    return null;
-  }
-
-  // 按涨幅排序
-  const getChangeVal = (b) => {
-    try {
-      return parseFloat(b.change.replace('%', '').replace('+', '')) || 0;
-    } catch {
-      return 0;
-    }
-  };
-
-  const sortedBoards = [...boards].sort((a, b) => getChangeVal(b) - getChangeVal(a));
+  const boardFailed = !boards || boards.length === 0;
 
   // 热门板块（涨幅前5）
-  const hotBoards = sortedBoards.slice(0, 5).map((b) => ({
-    name: b.name,
-    change: b.change,
-    leader: '--',
-    reason: '资金关注',
-  }));
+  let hotBoards = [];
+  let focusBoards = [];
+  let riskBoards = [];
 
-  // 明日关注板块
-  const focusBoards = sortedBoards.slice(2, 5).map((b) => ({
-    name: b.name,
-    reason: '资金持续流入',
-    technical: '趋势向好',
-    suggestion: '逢低关注',
-  }));
+  if (!boardFailed) {
+    // 按涨幅排序
+    const getChangeVal = (b) => {
+      try {
+        return parseFloat(b.change.replace('%', '').replace('+', '')) || 0;
+      } catch {
+        return 0;
+      }
+    };
 
-  // 风险板块（跌幅前3）
-  const riskBoards = sortedBoards.slice(-3).reverse().map((b) => ({
-    name: b.name,
-    reason: '资金流出',
-    suggestion: '谨慎参与',
-  }));
+    const sortedBoards = [...boards].sort((a, b) => getChangeVal(b) - getChangeVal(a));
+
+    hotBoards = sortedBoards.slice(0, 5).map((b) => ({
+      name: b.name,
+      change: b.change,
+      leader: '--',
+      reason: '资金关注',
+    }));
+
+    // 明日关注板块
+    focusBoards = sortedBoards.slice(2, 5).map((b) => ({
+      name: b.name,
+      reason: '资金持续流入',
+      technical: '趋势向好',
+      suggestion: '逢低关注',
+    }));
+
+    // 风险板块（跌幅前3）
+    riskBoards = sortedBoards.slice(-3).reverse().map((b) => ({
+      name: b.name,
+      reason: '资金流出',
+      suggestion: '谨慎参与',
+    }));
+  }
 
   // 判断市场情绪
   let sentiment = '中性';
@@ -193,8 +201,11 @@ function analyzeAndBuildReportData(boards, indices) {
     focus_boards: focusBoards,
     risk_boards: riskBoards,
     north_money: '--',
-    main_inflow: hotBoards.slice(0, 3).map((b) => b.name).join('、'),
+    main_inflow: hotBoards.length > 0 ? hotBoards.slice(0, 3).map((b) => b.name).join('、') : '--',
     margin_balance: '--',
+    board_failed: boardFailed,
+    index_failed: indices.failed || [],
+    index_success: indices.success || [],
     strategy: `1. **仓位控制**：建议维持6-7成仓位
 2. **关注方向**：今日热点板块的持续性
 3. **风险控制**：设置止损位，避免追高
@@ -225,7 +236,21 @@ function generateReport(boardData) {
 | 科创板指 | ${boardData.kc_index || '--'} | ${boardData.kc_index_change || '--'} |
 
 **市场情绪**: ${boardData.market_sentiment || '中性'}
+`;
 
+  // 添加数据获取失败提示
+  const warnings = [];
+  if (boardData.index_failed && boardData.index_failed.length > 0) {
+    warnings.push(`指数数据 - ${boardData.index_failed.join('、')}`);
+  }
+  if (boardData.board_failed) {
+    warnings.push(`板块数据`);
+  }
+  if (warnings.length > 0) {
+    report += `\n⚠️ **数据获取提示**: 以下数据获取失败 (${warnings.join('；')})，可能原因：非交易时间/网络异常/API 暂时不可用\n`;
+  }
+
+  report += `
 ---
 
 ## 🔥 热门板块 TOP 5
@@ -312,20 +337,10 @@ async function main() {
     console.error('获取板块数据...');
     const boards = await fetchBoardData();
 
-    if (boards.length === 0) {
-      console.error('[ERROR] 获取板块数据失败');
-      return 1;
-    }
-
     console.error(`获取到 ${boards.length} 个板块数据`);
 
     // 分析并构建报告数据
     const reportData = analyzeAndBuildReportData(boards, indices);
-
-    if (!reportData) {
-      console.error('[ERROR] 构建报告数据失败');
-      return 1;
-    }
 
     // 生成报告
     const report = generateReport(reportData);
