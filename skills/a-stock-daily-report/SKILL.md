@@ -158,6 +158,7 @@ mkdir -p ~/.openclaw/workspace/reports/a-stock-daily-report
 | 上证指数 | xxxx.xx | ±x.xx% |
 | 深证成指 | xxxx.xx | ±x.xx% |
 | 创业板指 | xxxx.xx | ±x.xx% |
+| 科创板指 | xxxx.xx | ±x.xx% |
 
 **市场情绪**: 偏多/偏空/中性
 
