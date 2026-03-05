@@ -6,6 +6,7 @@
 
 | 技能                             | 简介                                                         | 详情                                                         |
 | -------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| a-stock-daily-report             | A股日报自动生成与飞书推送（大盘概览、热门板块、资金动向）   | [skills/a-stock-daily-report/SKILL.md](skills/a-stock-daily-report/SKILL.md) |
 | juejin-article-trends            | 掘金热门文章榜单（分类列表 + 热门/最新文章）                 | [skills/juejin-article-trends/SKILL.md](skills/juejin-article-trends/SKILL.md) |
 | toutiao-news-trends              | 今日头条新闻热榜（热点标题、热度值、跳转链接、封面图）       | [skills/toutiao-news-trends/SKILL.md](skills/toutiao-news-trends/SKILL.md) |
 | wechat-article-search            | 微信公众号文章搜索（标题、概要、发布时间、公众号名称与链接） | [skills/wechat-article-search/SKILL.md](skills/wechat-article-search/SKILL.md) |
@@ -49,4 +50,5 @@ skills/
 ## 作者介绍
 
 - 小先（Ryan）
-- 爱生活、爱探索的小先
+- zsxink
+- "Ink the code, think the world." （以墨筑码，以思筑界。）
