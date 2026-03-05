@@ -8,6 +8,25 @@
 const https = require('https');
 const zlib = require('zlib');
 
+// 分类映射：英文 -> 中文
+const CATEGORY_MAP = {
+  'finance': '财经',
+  'car': '汽车',
+  'technology': '科技',
+  'entertainment': '娱乐',
+  'sports': '体育',
+  'society': '社会',
+  'international': '国际',
+  'military': '军事',
+  'health': '健康',
+  'education': '教育',
+  'game': '游戏',
+  'travel': '旅游',
+  'food': '美食',
+  'fashion': '时尚',
+  'life': '生活',
+};
+
 const USER_AGENTS = [
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 14_2_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2 Safari/605.1.15',
@@ -107,6 +126,8 @@ async function getHotBoard(limit = 50) {
     }
 
     const popularity = Number.parseInt(item.HotValue, 10);
+    const categories = Array.isArray(item.InterestCategory) ? item.InterestCategory : [];
+    const categoriesCN = categories.map(cat => CATEGORY_MAP[cat] || cat);
 
     return {
       rank: index + 1,
@@ -116,11 +137,39 @@ async function getHotBoard(limit = 50) {
       cover: item.Image && item.Image.url ? item.Image.url : null,
       label: item.LabelDesc || item.Label || null,
       clusterId: String(item.ClusterIdStr || item.ClusterId || ''),
-      categories: Array.isArray(item.InterestCategory) ? item.InterestCategory : [],
+      categories: categories,
+      categoriesCN: categoriesCN,
     };
   });
 
   return items.slice(0, safeLimit);
+}
+
+/**
+ * 格式化热度值为"万"单位
+ */
+function formatPopularity(popularity) {
+  if (!Number.isFinite(popularity) || popularity < 0) return '0';
+  return (popularity / 10000).toFixed(0) + '万';
+}
+
+/**
+ * 按照规范格式输出 Markdown
+ */
+function printFormatted(data) {
+  console.log(`## 今日头条最新热点新闻 Top ${data.length}`);
+  console.log();
+  console.log(`**🔥 热度前十名**`);
+  console.log();
+
+  data.forEach((item) => {
+    const categoryStr = item.categoriesCN.length > 0 ? item.categoriesCN.join('/') : '-';
+    console.log(`${item.rank}. **${item.title}**`);
+    console.log(`热度：${formatPopularity(item.popularity)}`);
+    console.log(`分类：${categoryStr}`);
+    console.log(`[查看详情](${item.link})`);
+    console.log();
+  });
 }
 
 function printHelp() {
@@ -128,43 +177,71 @@ function printHelp() {
 今日头条热榜工具
 
 用法:
-  node scripts/toutiao.js <command> [args]
+  node scripts/toutiao.js [command] [limit]
 
 命令:
-  hot, list            获取热榜（可选: limit）
+  (无)                 获取热榜（默认格式化输出，前10条）
+  format, fmt         获取热榜（格式化输出，符合规范，默认10条）
+  json                获取热榜（JSON 格式，默认50条）
+  help                 显示帮助信息
+
+参数:
+  limit                获取新闻数量（默认：格式化输出10条，JSON输出50条）
 
 示例:
-  # 获取热榜（默认50条）
-  node scripts/toutiao.js hot
+  # 获取热榜（格式化输出，默认10条）
+  node scripts/toutiao.js
+  node scripts/toutiao.js format
 
-  # 获取热榜前10条
-  node scripts/toutiao.js hot 10
+  # 获取热榜前5条（格式化输出）
+  node scripts/toutiao.js 5
+  node scripts/toutiao.js format 5
+
+  # 获取热榜（JSON 格式，默认50条）
+  node scripts/toutiao.js json
+
+  # 获取热榜前20条（JSON 格式）
+  node scripts/toutiao.js json 20
 :`);
 }
 
 async function main() {
   const args = process.argv.slice(2);
   const command = args[0];
+  const arg2 = args[1];
 
   try {
-    switch (command) {
-      case 'hot':
-      case 'list':
-      case '--hot':
-      case '-h': {
-        const limitArg = args[1];
-        const limit = limitArg ? Number.parseInt(limitArg, 10) : 50;
-        const data = await getHotBoard(limit);
-        console.log(JSON.stringify(data, null, 2));
-        break;
-      }
-      case 'help':
-      case '--help':
-      case '-?':
-      default:
-        printHelp();
-        process.exit(0);
+    // 处理第一个参数是数字的情况（格式化输出）
+    const firstArgIsNumber = !isNaN(Number.parseInt(command));
+    const secondArgIsNumber = arg2 && !isNaN(Number.parseInt(arg2));
+
+    if (firstArgIsNumber) {
+      // 第一个参数是数字，直接格式化输出
+      const limit = Number.parseInt(command);
+      const data = await getHotBoard(limit);
+      printFormatted(data);
+      return;
     }
+
+    // 默认行为：格式化输出（无命令或格式化命令）
+    if (!command || command === 'format' || command === 'fmt' || command === '--format') {
+      const limit = secondArgIsNumber ? Number.parseInt(arg2) : 10;
+      const data = await getHotBoard(limit);
+      printFormatted(data);
+      return;
+    }
+
+    // JSON 输出（需要明确指定）
+    if (command === 'json' || command === '--json') {
+      const limit = secondArgIsNumber ? Number.parseInt(arg2) : 50;
+      const data = await getHotBoard(limit);
+      console.log(JSON.stringify(data, null, 2));
+      return;
+    }
+
+    // 帮助信息
+    printHelp();
+    process.exit(0);
   } catch (error) {
     console.error(`Error: ${error.message}`);
     process.exit(1);
