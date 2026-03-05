@@ -34,18 +34,18 @@ node scripts\a-stock-report.js
 ### 2. 配置定时任务
 
 ```bash
-# 每天15:30自动运行（建议在收盘前30分钟）
+# 每天15:30自动运行（建议在收盘后30分钟）
 openclaw cron add --schedule "30 15 * * 1-5" \
   --timezone "Asia/Shanghai" \
   --command "node ~/.openclaw/workspace/skills/a-stock-daily-report/scripts/a-stock-report.js"
 
-# 或每天16:00运行（收盘后）
+# 或每天16:00运行（收盘后1小时）
 openclaw cron add --schedule "0 16 * * 1-5" \
   --timezone "Asia/Shanghai" \
   --command "node ~/.openclaw/workspace/skills/a-stock-daily-report/scripts/a-stock-report.js"
 ```
 
-**注意**：建议在 15:30-16:00 之间运行，此时市场接近收盘，数据较为完整且 API 可用。
+**注意**：A股收盘时间为15:00，建议在 15:30-16:00 之间运行，此时市场已收盘，数据较为完整且 API 可用。
 
 ### 3. 推送消息（推荐）
 
