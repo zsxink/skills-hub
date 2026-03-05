@@ -9,7 +9,7 @@ description: A股每日简报自动生成系统。抓取东方财富实时数据
 
 ## 功能
 
-- 📊 **大盘概览**：上证、深证、创业板指数
+- 📊 **大盘概览**：上证、深证、创业板、科创板指数
 - 🔥 **热门板块**：涨幅 TOP 5 板块
 - 📈 **明日关注**：技术面突破、政策利好板块
 - ⚠️ **风险提示**：高估值、资金流出板块
@@ -34,11 +34,18 @@ node scripts\a-stock-report.js
 ### 2. 配置定时任务
 
 ```bash
-# 每天16:00自动运行
+# 每天15:30自动运行（建议在收盘前30分钟）
+openclaw cron add --schedule "30 15 * * 1-5" \
+  --timezone "Asia/Shanghai" \
+  --command "node ~/.openclaw/workspace/skills/a-stock-daily-report/scripts/a-stock-report.js"
+
+# 或每天16:00运行（收盘后）
 openclaw cron add --schedule "0 16 * * 1-5" \
   --timezone "Asia/Shanghai" \
   --command "node ~/.openclaw/workspace/skills/a-stock-daily-report/scripts/a-stock-report.js"
 ```
+
+**注意**：建议在 15:30-16:00 之间运行，此时市场接近收盘，数据较为完整且 API 可用。
 
 ### 3. 推送消息（推荐）
 
@@ -74,6 +81,17 @@ a-stock-daily-report/
 
 - **东方财富网**：板块排行、指数行情
 - **API**：免费，无需密钥
+
+## ⚠️ 重要提示
+
+### API 使用限制
+
+- **指数数据 API 在非交易时间（晚间、周末）可能关闭**
+- 建议运行时间：交易日 9:30-15:00
+- 如需在晚间获取数据，建议：
+  1. **缓存机制**：在收盘前运行一次并缓存数据
+  2. **手动维护**：使用本地存储的指数数据
+  3. **降级处理**：指数数据不可用时仍可生成板块数据报告
 
 ## 自定义
 
