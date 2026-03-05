@@ -219,7 +219,7 @@ function analyzeAndBuildReportData(boards, indices) {
  * 生成Markdown报告
  */
 function generateReport(boardData) {
-  const today = new Date().toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '年').replace(/年(\d{2})$/, '年$1日');
+  const today = new Date().toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '年').replace('年', '年').replace(/年(\d{2})$/, '月$1日');
 
   let report = `# 📊 A股市场日报
 **${today}**
@@ -315,7 +315,7 @@ ${boardData.strategy || '1. **仓位控制**：建议维持6-7成仓位\n2. **�
 ---
 
 **数据来源**: 东方财富网
-**生成时间**: ${new Date().toISOString().split('T')[0]}
+**生成时间**: ${new Date().toLocaleDateString('zh-CN').replace(/\//g, '-')}
 `;
 
   return report;
