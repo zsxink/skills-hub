@@ -2,14 +2,21 @@
 
 一个AI Agent 技能仓库，提供各种实用技能，帮助AI助手更好地完成特定任务。
 
+## ✨ 技能特点
+
+- 🚀 **即装即用**：每个技能都包含完整的脚本和文档
+- 📖 **规范输出**：所有技能都遵循统一的输出格式规范
+- 🎯 **场景丰富**：覆盖财经、新闻、技术文章等多个领域
+- 🔧 **易于扩展**：清晰的目录结构，方便添加新技能
+
 ## 🎯 现有技能
 
-| 技能                             | 简介                                                         | 详情                                                         |
-| -------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| a-stock-daily-report             | A股日报自动生成与飞书推送（大盘概览、热门板块、资金动向）   | [skills/a-stock-daily-report/SKILL.md](skills/a-stock-daily-report/SKILL.md) |
-| juejin-article-trends            | 掘金热门文章榜单（分类列表 + 热门/最新文章）                 | [skills/juejin-article-trends/SKILL.md](skills/juejin-article-trends/SKILL.md) |
-| toutiao-news-trends              | 今日头条新闻热榜（热点标题、热度值、跳转链接、封面图）       | [skills/toutiao-news-trends/SKILL.md](skills/toutiao-news-trends/SKILL.md) |
-| wechat-article-search            | 微信公众号文章搜索（标题、概要、发布时间、公众号名称与链接） | [skills/wechat-article-search/SKILL.md](skills/wechat-article-search/SKILL.md) |
+| 技能 | 描述 | 核心功能 |
+|------|------|---------|
+| [a-stock-daily-report](skills/a-stock-daily-report/SKILL.md) | A股每日简报自动生成系统 | 📊 大盘指数 · 🔥 热门板块 · 📈 明日关注 · ⚠️ 风险提示 · 💰 资金动向 |
+| [juejin-article-trends](skills/juejin-article-trends/SKILL.md) | 掘金技术文章排行榜查询 | 🏷️ 分类查询 · 📊 热门文章 · 🕐 最新文章 · 📝 阅读数据统计 |
+| [toutiao-news-trends](skills/toutiao-news-trends/SKILL.md) | 今日头条热点新闻热榜 | 📰 实时热点 · 🔥 热度排行 · 🏷️ 智能分类 · 🔗 快速链接 |
+| [wechat-article-search](skills/wechat-article-search/SKILL.md) | 微信公众号文章智能搜索 | 🔍 关键词检索 · 📄 文章概要 · ⏰ 发布时间 · 📱 来源追踪 |
 
 ## 🚀 技能安装
 
