@@ -98,6 +98,7 @@ async function fetchIndexData() {
     { secid: '1.000001', key: 'sh_index', name: '上证指数' },
     { secid: '0.399001', key: 'sz_index', name: '深证成指' },
     { secid: '0.399006', key: 'cy_index', name: '创业板指' },
+    { secid: '1.000688', key: 'kc_index', name: '科创板指' },
   ];
 
   const result = {};
@@ -221,6 +222,7 @@ function generateReport(boardData) {
 | 上证指数 | ${boardData.sh_index || '--'} | ${boardData.sh_index_change || '--'} |
 | 深证成指 | ${boardData.sz_index || '--'} | ${boardData.sz_index_change || '--'} |
 | 创业板指 | ${boardData.cy_index || '--'} | ${boardData.cy_index_change || '--'} |
+| 科创板指 | ${boardData.kc_index || '--'} | ${boardData.kc_index_change || '--'} |
 
 **市场情绪**: ${boardData.market_sentiment || '中性'}
 
