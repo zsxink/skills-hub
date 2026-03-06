@@ -162,12 +162,16 @@ function printFormatted(data) {
   console.log(`**🔥 热度前十名**`);
   console.log();
 
-  data.forEach((item) => {
+  data.forEach((item, index) => {
     const categoryStr = item.categoriesCN.length > 0 ? item.categoriesCN.join('/') : '-';
     console.log(`${item.rank}. **${item.title}**`);
     console.log(`热度：${formatPopularity(item.popularity)}`);
     console.log(`分类：${categoryStr}`);
     console.log(`[查看详情](${item.link})`);
+    // 在每条新闻后添加分隔线(最后一条除外)
+    if (index < data.length - 1) {
+      console.log(`---`);
+    }
     console.log();
   });
 }
