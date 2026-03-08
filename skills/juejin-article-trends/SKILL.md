@@ -82,14 +82,14 @@ node scripts/juejin.js articles <category_id> [type] [limit]
 node scripts/juejin.js categories
 ```
 
-### 获取前端热门文章（前10篇）
+### 获取后端热门文章（默认 10 篇）
 ```bash
 node scripts/juejin.js articles 6809637769959178254 hot 10
 ```
 
-### 获取后端最新文章
+### 获取后端最新文章（默认 10 篇）
 ```bash
-node scripts/juejin.js articles 6809637769959178255 new 15
+node scripts/juejin.js articles 6809637769959178254 new 10
 ```
 
 ## 作者介绍

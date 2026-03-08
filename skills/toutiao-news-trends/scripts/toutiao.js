@@ -167,7 +167,8 @@ function printFormatted(data) {
     console.log(`${item.rank}. **${item.title}**`);
     console.log(`热度：${formatPopularity(item.popularity)}`);
     console.log(`分类：${categoryStr}`);
-    console.log(`[查看详情](${item.link})`);
+    // 使用尖括号包裹链接，避免特殊字符导致 Markdown 解析问题
+    console.log(`[查看详情](<${item.link}>)`);
     // 在每条新闻后添加分隔线(最后一条除外)
     if (index < data.length - 1) {
       console.log(`---`);
