@@ -325,6 +325,12 @@ ${boardData.strategy || '1. **仓位控制**：建议维持6-7成仓位\n2. **�
  * 主函数
  */
 async function main() {
+  const args = process.argv.slice(2);
+  const command = args[0];
+
+  // 判断输出格式
+  const outputJson = command === 'json' || command === '--json';
+
   console.error(`[${new Date().toLocaleString()}] 开始生成A股日报...`);
 
   try {
@@ -342,13 +348,17 @@ async function main() {
     // 分析并构建报告数据
     const reportData = analyzeAndBuildReportData(boards, indices);
 
-    // 生成报告
-    const report = generateReport(reportData);
+    // 根据命令输出不同格式
+    if (outputJson) {
+      // JSON 输出
+      console.log(JSON.stringify(reportData, null, 2));
+    } else {
+      // 格式化输出（默认）
+      const report = generateReport(reportData);
+      console.log(report);
+    }
 
     console.error(`[${new Date().toLocaleString()}] 报告生成完成`);
-
-    // 输出报告内容到 stdout（供 OpenClaw 或其他工具读取）
-    console.log(report);
 
     return 0;
   } catch (error) {

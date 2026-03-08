@@ -23,7 +23,15 @@ description: A股每日简报自动生成系统。抓取东方财富实时数据
 node scripts/a-stock-report.js
 ```
 
-直接运行即可生成 A股日报报告。
+直接运行即可生成 A股日报报告（格式化输出）。
+
+### 获取 JSON 数据
+
+```bash
+node scripts/a-stock-report.js json
+```
+
+获取 JSON 格式的数据，便于程序处理。
 
 ### 保存到文件（可选）
 
