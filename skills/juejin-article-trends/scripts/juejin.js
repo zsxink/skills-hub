@@ -56,13 +56,20 @@ function httpGet(url, headers = {}) {
 
     const req = https.request(options, (res) => {
       const chunks = [];
-      
+
       res.on('data', (chunk) => { chunks.push(chunk); });
-      
+
       res.on('end', () => {
         const buffer = Buffer.concat(chunks);
         const encoding = res.headers['content-encoding'];
-        
+
+        // 检查响应状态码
+        if (res.statusCode !== 200) {
+          const errorText = buffer.toString('utf-8');
+          reject(new Error(`HTTP ${res.statusCode}: ${errorText.substring(0, 200)}`));
+          return;
+        }
+
         // 解压数据
         let decompressed;
         try {
@@ -75,8 +82,9 @@ function httpGet(url, headers = {}) {
           } else {
             decompressed = buffer;
           }
-          
-          const data = JSON.parse(decompressed.toString('utf-8'));
+
+          const text = decompressed.toString('utf-8');
+          const data = JSON.parse(text);
           resolve(data);
         } catch (e) {
           reject(new Error(`Failed to parse response: ${e.message}`));
@@ -125,7 +133,7 @@ async function getArticles(categoryId, type = 'hot', limit = 20) {
   try {
     const url = `https://api.juejin.cn/content_api/v1/content/article_rank?category_id=${categoryId}&type=${type}`;
     const response = await httpGet(url);
-    
+
     if (response.err_no !== 0) {
       throw new Error(response.err_msg || '获取文章失败');
     }
@@ -175,30 +183,44 @@ async function main() {
       case '-a': {
         const categoryId = args[1];
         const type = args[2] || 'hot';
-        const limit = parseInt(args[3]) || 20;
+        const limitArg = args[3];
+        const outputJson = args.includes('json') || args.includes('--json');
+
+        let limit = 20;
+        if (limitArg && !limitArg.startsWith('-') && limitArg !== 'json' && limitArg !== '--json') {
+          limit = parseInt(limitArg) || 20;
+        }
 
         if (!categoryId) {
-          console.error('Error: 请提供分类ID');
-          console.error('用法: node juejin.js articles <category_id> [type] [limit]');
+          console.error('[ERROR] 请提供分类ID');
           process.exit(1);
         }
 
         const articles = await getArticles(categoryId, type, limit);
 
-        // 以易读格式输出文章列表
-        console.log(`\n找到 ${articles.length} 篇${type === 'hot' ? '热门' : '最新'}文章:\n`);
-
-        articles.forEach((article, index) => {
-          console.log(`## ${index + 1}. ${article.title}`);
-          console.log(`- **作者**: ${article.author}`);
-          console.log(`- **热度**: ${article.popularity}`);
-          console.log(`- **阅读**: ${article.viewCount} | **点赞**: ${article.likeCount} | **收藏**: ${article.collectCount} | **评论**: ${article.commentCount}`);
-          if (article.brief) {
-            console.log(`- **摘要**: ${article.brief}`);
-          }
-          console.log(`- **链接**: ${article.url}`);
-          console.log('');
-        });
+        // 判断输出格式
+        if (outputJson) {
+          // JSON 格式输出
+          console.log(JSON.stringify({
+            category_id: categoryId,
+            type,
+            total: articles.length,
+            articles
+          }, null, 2));
+        } else {
+          // Markdown 格式输出
+          articles.forEach((article, index) => {
+            console.log(`## ${index + 1}. ${article.title}`);
+            console.log(`- **作者**: ${article.author}`);
+            console.log(`- **热度**: ${article.popularity}`);
+            console.log(`- **阅读**: ${article.viewCount} | **点赞**: ${article.likeCount} | **收藏**: ${article.collectCount} | **评论**: ${article.commentCount}`);
+            if (article.brief) {
+              console.log(`- **摘要**: ${article.brief}`);
+            }
+            console.log(`- **链接**: [查看详情](<${article.url}>)`);
+            console.log('');
+          });
+        }
 
         break;
       }
@@ -224,10 +246,14 @@ async function main() {
   # 获取指定分类的最新文章，限制10篇
   node juejin.js articles 6809637769959178254 new 10
 
+  # 获取指定分类的热门文章，输出JSON格式
+  node juejin.js articles 6809637769959178254 hot 20 json
+
 参数说明:
   category_id    分类ID (可通过 categories 命令获取)
   type           排序类型: hot(热门) 或 new(最新), 默认hot
   limit          返回文章数量, 默认20
+  json, --json   输出JSON格式数据
 `);
         process.exit(0);
     }
