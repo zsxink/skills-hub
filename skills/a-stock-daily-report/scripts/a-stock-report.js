@@ -331,19 +331,12 @@ async function main() {
   // 判断输出格式
   const outputJson = command === 'json' || command === '--json';
 
-  console.error(`[${new Date().toLocaleString()}] 开始生成A股日报...`);
-
   try {
     // 获取指数数据
-    console.error('获取指数数据...');
     const indices = await fetchIndexData();
-    console.error(`指数数据:`, JSON.stringify(indices));
 
     // 获取板块数据
-    console.error('获取板块数据...');
     const boards = await fetchBoardData();
-
-    console.error(`获取到 ${boards.length} 个板块数据`);
 
     // 分析并构建报告数据
     const reportData = analyzeAndBuildReportData(boards, indices);
@@ -357,8 +350,6 @@ async function main() {
       const report = generateReport(reportData);
       console.log(report);
     }
-
-    console.error(`[${new Date().toLocaleString()}] 报告生成完成`);
 
     return 0;
   } catch (error) {
