@@ -26,19 +26,26 @@ npm install -g cheerio
 1、执行搜索命令（默认会自动尝试解析真实微信文章链接）
 
 ```bash
-node scripts/search_wechat.js "关键词" 
+node scripts/search_wechat.js "关键词"
 ```
 
 ## 特殊流程（可选）
 1) 执行包含数量限制的搜索命令
 
 ```bash
-node scripts/search_wechat.js "关键词"  -n 15
+node scripts/search_wechat.js "关键词" -n 15
 ```
+
 2) 如果用户需要保存结果到文件，执行命令
 
 ```bash
 node scripts/search_wechat.js "关键词" -n 20 -o result.json
+```
+
+3) 如果用户需要 JSON 格式输出，执行命令
+
+```bash
+node scripts/search_wechat.js "关键词" json
 ```
 
 ## 参数说明
@@ -46,9 +53,13 @@ node scripts/search_wechat.js "关键词" -n 20 -o result.json
 - `query`：搜索关键词（必填）
 - `-n, --num`：返回数量（默认 10，最大 50）
 - `-o, --output`：输出 JSON 文件路径（可选）
-- `--no-resolve-url`：跳过真实链接解析，直接返回搜狗转链（默认会自动尝试解析）
+- `-r, --resolve-url`：解析真实的微信文章URL（默认启用）
+- `--no-resolve-url`：跳过真实链接解析，直接返回搜狗转链
+- `json, --json`：直接输出 JSON 格式数据，便于程序处理
 
 ## 输出格式
+
+### 格式化输出（默认）
 
 以易读的文本格式输出搜索结果，每篇文章包含以下信息：
 
@@ -57,12 +68,71 @@ node scripts/search_wechat.js "关键词" -n 20 -o result.json
    - 来源: 公众号名称
    - 时间: YYYY-MM-DD HH:mm:ss (相对时间描述) (日期描述)
    - 摘要: 文章内容概要
-   - 链接: [查看详情](微信文章链接)
+   - 链接: [查看详情](<链接>)
 ```
 
+### Markdown 输出（默认）
+
+以 Markdown 格式输出搜索结果，每篇文章包含以下信息：
+
+```markdown
+
+找到 X 篇关于"关键词"的文章:
+
+1. 文章标题
+   - 来源: 公众号名称
+   - 时间: YYYY-MM-DD HH:mm:ss (相对时间描述) (日期描述)
+   - 摘要: 文章内容概要
+   - 链接: [查看详情](<链接>)
+
+2. 文章标题
+   - 来源: 公众号名称
+   - 时间: YYYY-MM-DD HH:mm:ss (相对时间描述) (日期描述)
+   - 摘要: 文章内容概要
+   - 链接: [查看详情](<链接>)
+
+...
+```
+
+**Markdown 输出特点**：
+- 使用 Markdown 格式，可直接在支持 Markdown 的环境中渲染
+- 每篇文章之间有空行分隔，便于阅读
+- 链接使用 `[查看详情](<链接>)` 格式，可正确处理特殊字符
+- 文章按发布时间降序排列（最新在前）
+
+### JSON 输出（使用 `json` 参数）
+
+```json
+{
+  "query": "搜索关键词",
+  "total": 10,
+  "articles": [
+    {
+      "title": "文章标题",
+      "source": "公众号名称",
+      "datetime": "2026-03-08 10:30:00",
+      "date_description": "2小时前",
+      "date_text": "今天",
+      "summary": "文章摘要",
+      "url": "https://mp.weixin.qq.com/s/...",
+      "url_resolved": true
+    }
+  ]
+}
+```
+
+**JSON 字段说明**：
+- `title`：文章标题
+- `source`：来源公众号名称
+- `datetime`：文章发布时间（ISO格式）
+- `date_description`：相对时间描述（如"2小时前"、"1天前"）
+- `date_text`：日期描述（如"今天"、"昨天"、"2024-01-01"）
+- `summary`：文章摘要
+- `url`：文章链接（可能为真实微信链接或搜狗转链）
+- `url_resolved`：是否成功解析到真实微信链接（`true`/`false`）
+
 ### 输出说明
-- 如果成功解析到真实微信文章链接，会显示为 `[查看详情](链接)` 的可点击格式
-- 如果只有搜狗转链，会显示为 `查看详情 (搜狗链接)`
+- 所有链接使用 `[查看详情](<链接>)` 格式，可以正确处理特殊字符
 - 文章已按发布时间降序排序（最新在前）
 - 只显示最近60天内的文章，自动过滤旧内容
 

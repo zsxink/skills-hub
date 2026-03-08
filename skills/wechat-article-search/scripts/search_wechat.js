@@ -381,7 +381,6 @@ function getRealUrl(url, cookieObj = {}, retries = 3) {
 
           if (resp.statusCode === 200) {
             const html = resp.body.toString('utf-8');
-            console.error(`  获取到HTML内容(长度: ${html.length})，尝试解析跳转URL...`);
             const redirectUrl = extractRedirectUrlFromHtml(html);
             if (redirectUrl && redirectUrl.includes('mp.weixin.qq.com')) {
               resolve(redirectUrl);
@@ -409,6 +408,7 @@ function parseCliArgs(args) {
   let num = 10;
   let output = '';
   let resolveRealUrl = true; // 默认为 true，自动解析真实URL
+  let outputJson = false; // 是否输出 JSON 格式
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === '-n' || args[i] === '--num') {
@@ -421,12 +421,14 @@ function parseCliArgs(args) {
       resolveRealUrl = true;
     } else if (args[i] === '--no-resolve-url') {
       resolveRealUrl = false;
+    } else if (args[i] === 'json' || args[i] === '--json') {
+      outputJson = true;
     } else if (!args[i].startsWith('-')) {
       query = args[i];
     }
   }
 
-  return { query, num, output, resolveRealUrl };
+  return { query, num, output, resolveRealUrl, outputJson };
 }
 
 /**
@@ -437,18 +439,14 @@ function parseCliArgs(args) {
 async function resolveRealUrls(articles) {
   // 获取cookie用于解析URL
   const { cookieObj } = await getSogouCookie();
-  
-  console.error(`获取到 ${articles.length} 篇文章，开始解析真实URL...`);
-  console.error('注意：搜狗微信有严格的反爬虫机制，可能无法获取真实URL');
-  
+
   const results = [];
   let successCount = 0;
   let failCount = 0;
-  
+
   for (let i = 0; i < articles.length; i++) {
     const article = articles[i];
     try {
-      console.error(`[${i + 1}/${articles.length}] 解析: ${article.title.substring(0, 30)}...`);
       const realUrl = await getRealUrl(article.url, cookieObj);
       
       // 检查是否成功获取到真实URL（不是搜狗链接，也不是antispider页面）
@@ -474,7 +472,7 @@ async function resolveRealUrls(articles) {
         await new Promise(resolve => setTimeout(resolve, 500 + Math.random() * 1000));
       }
     } catch (error) {
-      console.error(`  解析失败: ${error.message}`);
+      console.error(`[ERROR] 解析URL失败: ${error.message}`);
       failCount++;
       results.push({
         ...article,
@@ -483,9 +481,7 @@ async function resolveRealUrls(articles) {
       });
     }
   }
-  
-  console.error(`\n解析完成: 成功 ${successCount}, 失败 ${failCount}`);
-  
+
   return results;
 }
 
@@ -726,7 +722,6 @@ async function searchWechatArticles(query, maxResults = 10, resolveRealUrl = fal
   
   // 如果需要解析真实URL
   if (resolveRealUrl && result.length > 0) {
-    console.error('正在解析真实URL...');
     return await resolveRealUrls(result);
   }
 
@@ -739,8 +734,8 @@ async function searchWechatArticles(query, maxResults = 10, resolveRealUrl = fal
 async function main() {
   const args = process.argv.slice(2);
 
-  const { query, num, output, resolveRealUrl } = parseCliArgs(args);
-  
+  const { query, num, output, resolveRealUrl, outputJson } = parseCliArgs(args);
+
   if (!query) {
     console.log(`
 微信公众号文章搜索工具
@@ -753,18 +748,18 @@ async function main() {
   -o, --output <文件>    输出JSON文件路径
   -r, --resolve-url      解析真实的微信文章URL（默认启用）
   --no-resolve-url       跳过URL解析，直接返回搜狗转链
+  json, --json           直接输出JSON格式数据
 
 示例:
   node search_wechat.js "人工智能" -n 20
   node search_wechat.js "ChatGPT" -n 10 -o result.json
   node search_wechat.js "人工智能" -n 5 --no-resolve-url
+  node search_wechat.js "人工智能" json
 `);
     process.exit(0);
   }
-  
-  try {
-    console.error(`正在搜索: "${query}"...`);
 
+  try {
     const articles = await searchWechatArticles(query, num, resolveRealUrl);
 
     const result = {
@@ -778,7 +773,13 @@ async function main() {
     if (output) {
       const fs = require('fs');
       fs.writeFileSync(output, jsonOutput, 'utf-8');
-      console.error(`结果已保存到: ${output}`);
+    }
+
+    // 根据参数选择输出格式
+    if (outputJson) {
+      // JSON 格式输出
+      console.log(jsonOutput);
+      return;
     }
 
     // 以易读格式输出结果
@@ -799,10 +800,10 @@ async function main() {
       }
       if (article.url.includes('mp.weixin.qq.com')) {
         // 输出可点击的微信文章链接
-        console.log(`   - 链接: [查看详情](${article.url})`);
+        console.log(`   - 链接: [查看详情](<${article.url}>)`);
       } else {
         // 搜狗转链
-        console.log(`   - 链接: 查看详情 (${article.url})`);
+        console.log(`   - 链接: [查看详情](<${article.url}>)`);
       }
       console.log('');
     });
