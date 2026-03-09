@@ -786,25 +786,24 @@ async function main() {
     console.log(`\n找到 ${articles.length} 篇关于"${query}"的文章:\n`);
 
     articles.forEach((article, index) => {
-      console.log(`${index + 1}. ${article.title}`);
-      console.log(`   - 来源: ${article.source || '未知'}`);
+      // 格式化时间信息
+      let timeInfo = '';
       if (article.datetime) {
-        const dateStr = article.date_description ? ` (${article.date_description})` : '';
-        const dateText = article.date_text ? ` (${article.date_text})` : '';
-        console.log(`   - 时间: ${article.datetime}${dateStr}${dateText}`);
+        const match = article.datetime.match(/(\d{2}:\d{2}:\d{2})/);
+        if (match) {
+          const time = match[1].slice(0, 5); // 只保留 HH:MM
+          const relativeTime = article.date_description || '';
+          timeInfo = `${time} (${relativeTime})`;
+        }
       } else if (article.date_description) {
-        console.log(`   - 时间: ${article.date_description}`);
+        timeInfo = article.date_description;
       }
-      if (article.summary) {
-        console.log(`   - 摘要: ${article.summary}`);
-      }
-      if (article.url.includes('mp.weixin.qq.com')) {
-        // 输出可点击的微信文章链接
-        console.log(`   - 链接: [查看详情](<${article.url}>)`);
-      } else {
-        // 搜狗转链
-        console.log(`   - 链接: [查看详情](<${article.url}>)`);
-      }
+
+      // 构建输出(合理的排版,便于阅读)
+      console.log(`${index + 1}. ${article.title}`);
+      console.log(`📌 来源: ${article.source || '未知'} | ⏰ ${timeInfo}`);
+      console.log(`💡 ${article.summary || ''}`);
+      console.log(`🔗 [查看详情](<${article.url}>)`);
       console.log('');
     });
 
