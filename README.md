@@ -58,6 +58,5 @@ skills/
 
 ## 作者介绍
 
-- 小先（Ryan）
-- zsxink
+- 小先（Ryan）[zsxink](https://github.com/zsxink)
 - "Ink the code, think the world." （以墨筑码，以思筑界。）
