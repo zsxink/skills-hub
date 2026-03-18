@@ -16,6 +16,8 @@
 | [a-stock-daily-report](skills/a-stock-daily-report/SKILL.md) | A股每日简报自动生成系统 | 📊 大盘指数 · 🔥 热门板块 · 📈 明日关注 · ⚠️ 风险提示 · 💰 资金动向 |
 | [juejin-article-trends](skills/juejin-article-trends/SKILL.md) | 掘金技术文章排行榜查询 | 🏷️ 分类查询 · 📊 热门文章 · 🕐 最新文章 · 📝 阅读数据统计 |
 | [toutiao-news-trends](skills/toutiao-news-trends/SKILL.md) | 今日头条热点新闻热榜 | 📰 实时热点 · 🔥 热度排行 · 🏷️ 智能分类 · 🔗 快速链接 |
+| [url-to-markdown](skills/url-to-markdown/SKILL.md) | 通用网页转Markdown工具 | 🌐 网页抓取 · 📄 格式转换 · 📚 结构保留 · 💾 本地备份 |
+| [wechat-article-fetcher](skills/wechat-article-fetcher/SKILL.md) | 微信公众号文章抓取工具 | 📱 公众号文章 · 📄 Markdown转换 · 🖼️ 图片本地化 · 🗃️ Obsidian适配 |
 | [wechat-article-search](skills/wechat-article-search/SKILL.md) | 微信公众号文章智能搜索 | 🔍 关键词检索 · 📄 文章概要 · ⏰ 发布时间 · 📱 来源追踪 |
 
 ## 🚀 技能安装
