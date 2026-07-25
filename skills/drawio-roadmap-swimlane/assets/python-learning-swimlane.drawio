@@ -1,0 +1,165 @@
+<mxfile host="Electron" agent="opencode">
+  <diagram id="python-swimlane" name="Python学习路书-泳道">
+    <mxGraphModel dx="2804" dy="1676" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1600" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="bg" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F7F8FC;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="1600" width="1200" as="geometry" />
+        </mxCell>
+        <mxCell id="eyebrow" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Helvetica;fontSize=14;fontStyle=1;fontColor=#1565C0;letterSpacing=2;" value="PYTHON LEARNING ROADMAP" vertex="1">
+          <mxGeometry height="24" width="400" x="60" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=32;fontStyle=1;fontColor=#1F2340;" value="Python 学习路线图" vertex="1">
+          <mxGeometry height="48" width="500" x="60" y="68" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=13;fontColor=#747995;" value="实线箭头 = 学习顺序 · ⭐ = 核心技能 · 卡片 = 单元" vertex="1">
+          <mxGeometry height="24" width="500" x="60" y="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lane1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1565C0;strokeWidth=2;arcSize=6;" value="" vertex="1">
+          <mxGeometry height="160" width="1080" x="60" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="chip1" parent="1" style="rounded=1;arcSize=50;whiteSpace=wrap;html=1;fillColor=#1565C0;strokeColor=none;fontColor=#FFFFFF;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;" value="01 基础语法" vertex="1">
+          <mxGeometry height="40" width="130" x="80" y="195" as="geometry" />
+        </mxCell>
+        <mxCell id="card1a" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1565C0;strokeWidth=1;fontSize=12;fontStyle=1;" value="01 环境搭建&#xa;安装 Python + VS Code" vertex="1">
+          <mxGeometry height="70" width="200" x="240" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="card1b" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1565C0;strokeWidth=1;fontSize=12;fontStyle=1;" value="02 变量与类型&#xa;int / str / list / dict" vertex="1">
+          <mxGeometry height="70" width="200" x="460" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="card1c" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1565C0;strokeWidth=1;fontSize=12;fontStyle=1;" value="03 控制流&#xa;if / for / while ⭐" vertex="1">
+          <mxGeometry height="70" width="200" x="680" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="card1d" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1565C0;strokeWidth=1;fontSize=12;fontStyle=1;" value="04 函数&#xa;def / args / return ⭐" vertex="1">
+          <mxGeometry height="70" width="200" x="900" y="190" as="geometry" />
+        </mxCell>
+
+        <mxCell id="arrow12" edge="1" parent="1" source="card1d" target="lane2" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;fillColor=#dae8fc;strokeColor=#6c8ebf;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1000" y="290" />
+              <mxPoint x="330" y="290" />
+            </Array>
+            <mxPoint x="1000" y="260" as="sourcePoint" />
+            <mxPoint x="330" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="lane2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#2E7D32;strokeWidth=2;arcSize=6;" value="" vertex="1">
+          <mxGeometry height="160" width="1080" x="60" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="chip2" parent="1" style="rounded=1;arcSize=50;whiteSpace=wrap;html=1;fillColor=#2E7D32;strokeColor=none;fontColor=#FFFFFF;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;" value="02 面向对象" vertex="1">
+          <mxGeometry height="40" width="130" x="80" y="385" as="geometry" />
+        </mxCell>
+        <mxCell id="card2a" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D32;strokeWidth=1;fontSize=12;fontStyle=1;" value="05 类与对象&#xa;class / self / init" vertex="1">
+          <mxGeometry height="70" width="200" x="240" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="card2b" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D32;strokeWidth=1;fontSize=12;fontStyle=1;" value="06 继承多态&#xa;super / MRO ⭐" vertex="1">
+          <mxGeometry height="70" width="200" x="460" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="card2c" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D32;strokeWidth=1;fontSize=12;fontStyle=1;" value="07 魔术方法&#xa;__str__ / __repr__" vertex="1">
+          <mxGeometry height="70" width="200" x="680" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="card2d" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D32;strokeWidth=1;fontSize=12;fontStyle=1;" value="08 property&#xa;getter / setter / @ ⭐" vertex="1">
+          <mxGeometry height="70" width="200" x="900" y="380" as="geometry" />
+        </mxCell>
+
+        <mxCell id="arrow23" edge="1" parent="1" source="card2d" target="lane3" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;fillColor=#e8f5e9;strokeColor=#6c8ebf;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1000" y="480" />
+              <mxPoint x="330" y="480" />
+            </Array>
+            <mxPoint x="1000" y="450" as="sourcePoint" />
+            <mxPoint x="330" y="550" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="lane3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#E65100;strokeWidth=2;arcSize=6;" value="" vertex="1">
+          <mxGeometry height="160" width="1080" x="60" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="chip3" parent="1" style="rounded=1;arcSize=50;whiteSpace=wrap;html=1;fillColor=#E65100;strokeColor=none;fontColor=#FFFFFF;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;" value="03 Web 开发" vertex="1">
+          <mxGeometry height="40" width="130" x="80" y="575" as="geometry" />
+        </mxCell>
+        <mxCell id="card3a" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#E65100;strokeWidth=1;fontSize=12;fontStyle=1;" value="09 Flask 入门&#xa;路由 / 蓝图" vertex="1">
+          <mxGeometry height="70" width="200" x="240" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="card3b" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#E65100;strokeWidth=1;fontSize=12;fontStyle=1;" value="10 模板渲染&#xa;Jinja2 / 静态资源" vertex="1">
+          <mxGeometry height="70" width="200" x="460" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="card3c" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#E65100;strokeWidth=1;fontSize=12;fontStyle=1;" value="11 REST API&#xa;JSON / CRUD ⭐" vertex="1">
+          <mxGeometry height="70" width="200" x="680" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="card3d" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#E65100;strokeWidth=1;fontSize=12;fontStyle=1;" value="12 数据库&#xa;SQLite / SQLAlchemy" vertex="1">
+          <mxGeometry height="70" width="200" x="900" y="570" as="geometry" />
+        </mxCell>
+
+        <mxCell id="arrow34" edge="1" parent="1" source="card3d" target="lane4" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;fillColor=#fff3e0;strokeColor=#6c8ebf;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1000" y="670" />
+              <mxPoint x="330" y="670" />
+            </Array>
+            <mxPoint x="1000" y="640" as="sourcePoint" />
+            <mxPoint x="330" y="740" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="lane4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E5F5;strokeColor=#6A1B9A;strokeWidth=2;arcSize=6;" value="" vertex="1">
+          <mxGeometry height="160" width="1080" x="60" y="740" as="geometry" />
+        </mxCell>
+        <mxCell id="chip4" parent="1" style="rounded=1;arcSize=50;whiteSpace=wrap;html=1;fillColor=#6A1B9A;strokeColor=none;fontColor=#FFFFFF;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;" value="04 数据分析" vertex="1">
+          <mxGeometry height="40" width="130" x="80" y="765" as="geometry" />
+        </mxCell>
+        <mxCell id="card4a" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6A1B9A;strokeWidth=1;fontSize=12;fontStyle=1;" value="13 NumPy&#xa;数组 / 运算" vertex="1">
+          <mxGeometry height="70" width="200" x="240" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="card4b" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6A1B9A;strokeWidth=1;fontSize=12;fontStyle=1;" value="14 Pandas&#xa;DataFrame / 清洗 ⭐" vertex="1">
+          <mxGeometry height="70" width="200" x="460" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="card4c" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6A1B9A;strokeWidth=1;fontSize=12;fontStyle=1;" value="15 Matplotlib&#xa;折线图 / 柱状图" vertex="1">
+          <mxGeometry height="70" width="200" x="680" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="card4d" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6A1B9A;strokeWidth=1;fontSize=12;fontStyle=1;" value="16 数据清洗&#xa;缺失值 / 异常值" vertex="1">
+          <mxGeometry height="70" width="200" x="900" y="760" as="geometry" />
+        </mxCell>
+
+        <mxCell id="arrow45" edge="1" parent="1" source="card4d" target="lane5" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;fillColor=#f3e5f5;strokeColor=#6c8ebf;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1000" y="860" />
+              <mxPoint x="330" y="860" />
+            </Array>
+            <mxPoint x="1000" y="830" as="sourcePoint" />
+            <mxPoint x="330" y="930" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="lane5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F7FA;strokeColor=#00838F;strokeWidth=2;arcSize=6;" value="" vertex="1">
+          <mxGeometry height="160" width="1080" x="60" y="930" as="geometry" />
+        </mxCell>
+        <mxCell id="chip5" parent="1" style="rounded=1;arcSize=50;whiteSpace=wrap;html=1;fillColor=#00838F;strokeColor=none;fontColor=#FFFFFF;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;" value="05 工程实践" vertex="1">
+          <mxGeometry height="40" width="130" x="80" y="955" as="geometry" />
+        </mxCell>
+        <mxCell id="card5a" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#00838F;strokeWidth=1;fontSize=12;fontStyle=1;" value="17 pytest&#xa;单元测试 / fixture" vertex="1">
+          <mxGeometry height="70" width="200" x="240" y="950" as="geometry" />
+        </mxCell>
+        <mxCell id="card5b" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#00838F;strokeWidth=1;fontSize=12;fontStyle=1;" value="18 虚拟环境&#xa;venv / pip freeze" vertex="1">
+          <mxGeometry height="70" width="200" x="460" y="950" as="geometry" />
+        </mxCell>
+        <mxCell id="card5c" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#00838F;strokeWidth=1;fontSize=12;fontStyle=1;" value="19 打包发布&#xa;setup.py / PyPI ⭐" vertex="1">
+          <mxGeometry height="70" width="200" x="680" y="950" as="geometry" />
+        </mxCell>
+        <mxCell id="card5d" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#00838F;strokeWidth=1;fontSize=12;fontStyle=1;" value="20 部署上线&#xa;Docker / CI/CD" vertex="1">
+          <mxGeometry height="70" width="200" x="900" y="950" as="geometry" />
+        </mxCell>
+
+        <mxCell id="footer" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontColor=#9A9EB5;" value="实线箭头 = 必修路径 · ⭐ = 核心技能 · 每个单元完成后打勾" vertex="1">
+          <mxGeometry height="28" width="600" x="300" y="1130" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

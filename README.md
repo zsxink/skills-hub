@@ -19,6 +19,9 @@
 | [url-to-markdown](skills/url-to-markdown/SKILL.md) | 通用网页转Markdown工具 | 🌐 网页抓取 · 📄 格式转换 · 📚 结构保留 · 💾 本地备份 |
 | [wechat-article-fetcher](skills/wechat-article-fetcher/SKILL.md) | 微信公众号文章抓取工具 | 📱 公众号文章 · 📄 Markdown转换 · 🖼️ 图片本地化 · 🗃️ Obsidian适配 |
 | [wechat-article-search](skills/wechat-article-search/SKILL.md) | 微信公众号文章智能搜索 | 🔍 关键词检索 · 📄 文章概要 · ⏰ 发布时间 · 📱 来源追踪 |
+| [drawio-roadmap-ppt](skills/drawio-roadmap-ppt/SKILL.md) | Draw.io PPT风格学习路线图 | 🎨 PPT视觉风格 · 📊 流程/架构/思维导图 · 🖼️ 预览图生成 |
+| [drawio-roadmap-swimlane](skills/drawio-roadmap-swimlane/SKILL.md) | Draw.io 泳道流学习路线图 | 🏊 泳道分阶段 · ➡️ 方向箭头 · 📋 单元卡片 · 🔗 学习顺序 |
+| [drawio-roadmap-snake](skills/drawio-roadmap-snake/SKILL.md) | Draw.io 蛇形学习路线图 | 🐍 S形轨道 · 🎨 双层色带 · 🏷️ 优先级标记 · 📐 原生弧形弯道 |
 
 ## 🚀 技能安装
 
