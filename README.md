@@ -12,22 +12,23 @@
 ## 🎯 现有技能
 
 | 技能 | 描述 | 核心功能 |
-|------|------|---------|
-| [a-stock-daily-report](skills/a-stock-daily-report/SKILL.md) | A股每日简报自动生成系统 | 📊 大盘指数 · 🔥 热门板块 · 📈 明日关注 · ⚠️ 风险提示 · 💰 资金动向 |
-| [juejin-article-trends](skills/juejin-article-trends/SKILL.md) | 掘金技术文章排行榜查询 | 🏷️ 分类查询 · 📊 热门文章 · 🕐 最新文章 · 📝 阅读数据统计 |
-| [toutiao-news-trends](skills/toutiao-news-trends/SKILL.md) | 今日头条热点新闻热榜 | 📰 实时热点 · 🔥 热度排行 · 🏷️ 智能分类 · 🔗 快速链接 |
-| [url-to-markdown](skills/url-to-markdown/SKILL.md) | 通用网页转Markdown工具 | 🌐 网页抓取 · 📄 格式转换 · 📚 结构保留 · 💾 本地备份 |
-| [wechat-article-fetcher](skills/wechat-article-fetcher/SKILL.md) | 微信公众号文章抓取工具 | 📱 公众号文章 · 📄 Markdown转换 · 🖼️ 图片本地化 · 🗃️ Obsidian适配 |
-| [wechat-article-search](skills/wechat-article-search/SKILL.md) | 微信公众号文章智能搜索 | 🔍 关键词检索 · 📄 文章概要 · ⏰ 发布时间 · 📱 来源追踪 |
-| [drawio-roadmap-ppt](skills/drawio-roadmap-ppt/SKILL.md) | Draw.io PPT风格学习路线图 | 🎨 PPT视觉风格 · 📊 流程/架构/思维导图 · 🖼️ 预览图生成 |
-| [drawio-roadmap-swimlane](skills/drawio-roadmap-swimlane/SKILL.md) | Draw.io 泳道流学习路线图 | 🏊 泳道分阶段 · ➡️ 方向箭头 · 📋 单元卡片 · 🔗 学习顺序 |
-| [drawio-roadmap-snake](skills/drawio-roadmap-snake/SKILL.md) | Draw.io 蛇形学习路线图 | 🐍 S形轨道 · 🎨 双层色带 · 🏷️ 优先级标记 · 📐 原生弧形弯道 |
+| --- | --- | --- |
+| a-stock-daily-report | A股每日简报自动生成系统 | 📊 大盘指数 · 🔥 热门板块 · 📈 明日关注 · ⚠️ 风险提示 · 💰 资金动向 |
+| juejin-article-trends | 掘金技术文章排行榜查询 | 🏷️ 分类查询 · 📊 热门文章 · 🕐 最新文章 · 📝 阅读数据统计 |
+| toutiao-news-trends | 今日头条热点新闻热榜 | 📰 实时热点 · 🔥 热度排行 · 🏷️ 智能分类 · 🔗 快速链接 |
+| url-to-markdown | 通用网页转Markdown工具 | 🌐 网页抓取 · 📄 格式转换 · 📚 结构保留 · 💾 本地备份 |
+| wechat-article-fetcher | 微信公众号文章抓取工具 | 📱 公众号文章 · 📄 Markdown转换 · 🖼️ 图片本地化 · 🗃️ Obsidian适配 |
+| wechat-article-search | 微信公众号文章智能搜索 | 🔍 关键词检索 · 📄 文章概要 · ⏰ 发布时间 · 📱 来源追踪 |
+| drawio-roadmap-ppt | Draw.io PPT风格学习路线图 | 🎨 PPT视觉风格 · 📊 流程/架构/思维导图 · 🖼️ 预览图生成 |
+| drawio-roadmap-swimlane | Draw.io 泳道流学习路线图 | 🏊 泳道分阶段 · ➡️ 方向箭头 · 📋 单元卡片 · 🔗 学习顺序 |
+| drawio-roadmap-snake | Draw.io 蛇形学习路线图 | 🐍 S形轨道 · 🎨 双层色带 · 🏷️ 优先级标记 · 📐 原生弧形弯道 |
+| cornell-notes-prompt | 康奈尔笔记信息图提示词生成器 | 📝 康奈尔版式 · 🎨 ChatGPT提示词 · 📚 学习主题填充 · 🖼️ 信息图生成 |
 
 ## 🚀 技能安装
 
 - 方式一：前往 `https://skills.sh/?q=zsxink`
-- 方式二：添加具体技能：`npx skills add `https://github.com/zsxink/skills-hub/`  --skill 技能名称`
-- 方式三：添加技能仓库：`npx skills add `https://github.com/zsxink/skills-hub` `
+- 方式二：添加具体技能：`npx skills add `https://github.com/zsxink/skills-hub/` --skill 技能名称`
+- 方式三：添加技能仓库：`npx skills add `https://github.com/zsxink/skills-hub
 - 方式四：手动下载技能文件夹，复制文件到自己的技能目录skills中
 
 ## 📁 技能目录结构
