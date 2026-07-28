@@ -40,7 +40,6 @@ node scripts/fetch.js <微信文章URL> [领域分类]
 |------|------|----------|------|
 | 微信文章URL | string | 是 | 格式为 `https://mp.weixin.qq.com/s/xxx` 的公开文章链接 |
 | 领域分类 | string | 否 | 文章分类标签，如：AI、生活、政策、财经、科技等，不传则无分类标签 |
-| 自定义摘要 | string | 否 | 大模型生成的文章摘要，100-150字最佳，不传则自动使用文章前150字作为摘要 |
 
 ### 使用示例
 ```bash
@@ -57,7 +56,7 @@ node scripts/fetch.js https://mp.weixin.qq.com/s/xxx AI
 ## 📂 输出说明
 ### 跨平台路径自动适配
 - **Windows**：`C:\Users\用户名\AppData\Local\Temp\wechat-article\wechat-article-[时间戳]\`
-- **Linux / macOS**：`/tmp/wechat-article/wechat-article-[时间戳]\`
+- **Linux / macOS**：`/tmp/wechat-article/wechat-article-[时间戳]/`
 
 ### 目录结构
 ```
@@ -76,7 +75,7 @@ wechat-article-1773845896874/
 title: 文章标题
 source: 原文链接
 author:
-  - "[[作者名称]]" # 无作者则省略此字段
+  - "[[作者名称]]" # 有作者时显示此行，无作者则省略
 published: XX公众号 微信公众号
 created: 2026-03-18
 description: 文章前150字纯文本摘要

@@ -42,8 +42,8 @@ If unsure, ask which they want, or offer to produce both.
 1. Collect outline: stages (lanes) → ordered units (title, subtitle, core?). If pointed at course dir/spec, derive and confirm lanes + order.
 2. Geometry: lane height ≈150, card width 200×70, card gap ≈20, lane start x≈195. Stack lanes with ≈30 vertical gap.
 3. Draw lanes (background) → header chips → unit cards → flexArrow arrows (bottom→down→left→top) → optional dashed branches → title + legend.
-4. Save to `docs/<name>.drawio`; give open instructions.
-5. Run `python3 scripts/validate_drawio.py <file.drawio>`.
+4. Save to `assets/<name>.drawio`; give open instructions.
+5. Run `python3 scripts/validate_drawio.py <file.drawio>`. Read [references/design-spec.md](references/design-spec.md) for exact palette values.
 
 ## Checklist
 

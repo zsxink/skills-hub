@@ -117,7 +117,7 @@ Use system-safe fonts:
 
 ### Horizontal learning road
 
-Place 3–5 equal stage cards in a row. Connect card centers. Add a dark weekly-rhythm or summary panel below. Use the supplied learning-roadmap asset as the base.
+Place 3–5 equal stage cards in a row. Connect card centers. Add a dark weekly-rhythm or summary panel below. Use `assets/python-learning-ppt.drawio` as the base.
 
 ### Vertical process
 

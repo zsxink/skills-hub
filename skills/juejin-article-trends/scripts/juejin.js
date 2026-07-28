@@ -230,7 +230,7 @@ async function main() {
 掘金热门文章排行榜工具
 
 用法:
-  node juejin.js <command> [options]
+  node scripts/juejin.js <command> [options]
 
 命令:
   categories, -c, --categories    获取文章分类列表
@@ -238,16 +238,16 @@ async function main() {
 
 示例:
   # 获取所有分类
-  node juejin.js categories
+  node scripts/juejin.js categories
 
   # 获取指定分类的热门文章 (默认20篇)
-  node juejin.js articles 6809637769959178254
+  node scripts/juejin.js articles 6809637769959178254
 
   # 获取指定分类的最新文章，限制10篇
-  node juejin.js articles 6809637769959178254 new 10
+  node scripts/juejin.js articles 6809637769959178254 new 10
 
   # 获取指定分类的热门文章，输出JSON格式
-  node juejin.js articles 6809637769959178254 hot 20 json
+  node scripts/juejin.js articles 6809637769959178254 hot 20 json
 
 参数说明:
   category_id    分类ID (可通过 categories 命令获取)

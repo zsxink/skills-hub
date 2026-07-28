@@ -1,11 +1,21 @@
 ---
 name: drawio-roadmap-ppt
-description: Create, redesign, or refine editable Draw.io/diagrams.net diagrams in a clean PPT visual style. Use for learning roadmaps, study plans, knowledge trees, process flows, timelines, architecture diagrams, comparison maps, mind maps, and converting structured text into polished, presentation-ready diagrams with consistent layout, colors, typography, connectors, milestones, and preview images.
+description: Use when creating or restyling editable Draw.io diagrams in a clean PPT / presentation card style — stage cards, timelines, process flows, architecture overviews, comparison grids, or mind maps that should look presentation-ready. For dense poster knowledge maps prefer drawio-roadmap-snake; for strict prerequisite course lanes prefer drawio-roadmap-swimlane.
 ---
 
 # Draw.io Roadmap PPT
 
 Create learning roadmaps and structured diagrams with Draw.io in a clean, polished PPT visual style — calm, modern, and fully editable.
+
+## Related skills (routing)
+
+| Need | Skill |
+|------|--------|
+| Presentation stage cards, 3–7 nodes, talk-through slides | **this skill (ppt)** |
+| Strict learning order, unit title + subtitle, swimlanes | `drawio-roadmap-swimlane` |
+| Dense poster / S-shaped dual-color track knowledge map | `drawio-roadmap-snake` |
+
+If unsure, ask which style they want, or offer ppt for presentation and snake for poster density.
 
 ## Workflow
 
@@ -16,10 +26,10 @@ Create learning roadmaps and structured diagrams with Draw.io in a clean, polish
    - Use a vertical flow for procedures and decision paths.
    - Use a hub-and-spoke layout for topic maps.
    - Use a grid for comparisons or independent categories.
-   - Use layers or swimlanes for systems and ownership.
+   - Use layers for systems and ownership (for course swimlanes with forced arrows, switch to `drawio-roadmap-swimlane`).
 4. Read [references/visual-system.md](references/visual-system.md) before designing or restyling.
 5. Read [references/drawio-xml.md](references/drawio-xml.md) when creating or editing Draw.io XML directly.
-6. Reuse [assets/learning-roadmap.drawio](assets/learning-roadmap.drawio) when a card-based roadmap is suitable; replace its content and adjust the number of stages rather than rebuilding it.
+6. Reuse [assets/python-learning-ppt.drawio](assets/python-learning-ppt.drawio) when a card-based roadmap is suitable; replace its content and adjust the number of stages rather than rebuilding it.
 7. Generate an uncompressed `.drawio` file with stable, descriptive cell IDs.
 8. Produce an SVG preview and, when local conversion is available, a PNG preview.
 9. Run `python3 scripts/validate_drawio.py <file.drawio>`.

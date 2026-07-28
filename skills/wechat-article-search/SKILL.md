@@ -13,10 +13,10 @@ description: 微信公众号文章智能搜索工具。通过关键词检索获�
 ## 工作流程
 
 ### 步骤1: 确认已安装依赖包
-该脚本依赖NodeJS依赖包 `cheerio`，建议先执行全局安装或在项目中安装：
+该脚本依赖 NodeJS 依赖包 `cheerio`，进入技能目录安装：
 
 ```bash
-npm install -g cheerio
+cd skills/wechat-article-search && npm install
 ```
 
 ### 步骤2: 确认搜索词语数量

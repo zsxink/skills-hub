@@ -160,6 +160,10 @@ Claude 输出：将模板中 `【主题】` 替换为 `RAG（检索增强生成�
 
 Claude 输出：除了替换主题外，在提示词顶部布局中补充科目和日期信息。
 
+## 参考示例
+
+完整的使用示例（含完整提示词输出）请查看 [references/examples.md](references/examples.md)。
+
 ## 注意事项
 
 - 提示词适用于 ChatGPT（GPT-4 + DALL-E）生成图片

@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
-const { execSync } = require('child_process');
 const cheerio = require('cheerio');
 const axios = require('axios');
 
@@ -118,8 +117,10 @@ async function main() {
     let frontMatter = '---\n';
     frontMatter += `title: ${title.replace(/:/g, '：')}\n`; // 替换冒号避免YAML语法错误
     frontMatter += `source: ${url}\n`;
-    // 始终保留author字段，无作者则留空
-    frontMatter += `author:\n  - "[[${author ? author.replace(/:/g, '：') : ''}]]"\n`;
+    // author字段，有作者才写入
+    if (author) {
+      frontMatter += `author:\n  - "[[${author.replace(/:/g, '：')}]]"\n`;
+    }
     frontMatter += `published: ${officialAccountName}微信公众号\n`;
     frontMatter += `created: ${createdDate}\n`;
     frontMatter += `description: ${description.replace(/:/g, '：').replace(/\n/g, ' ')}\n`;

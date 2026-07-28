@@ -159,7 +159,7 @@ function formatPopularity(popularity) {
 function printFormatted(data) {
   console.log(`## 今日头条最新热点新闻 Top ${data.length}`);
   console.log();
-  console.log(`**🔥 热度前十名**`);
+  console.log(`**🔥 热度 Top ${data.length}**`);
   console.log();
 
   data.forEach((item, index) => {
@@ -207,7 +207,7 @@ function printHelp() {
 
   # 获取热榜前20条（JSON 格式）
   node scripts/toutiao.js json 20
-:`);
+`);
 }
 
 async function main() {

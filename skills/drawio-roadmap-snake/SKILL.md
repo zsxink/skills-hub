@@ -7,6 +7,16 @@ description: Create or redesign editable Draw.io snake-style roadmaps with conti
 
 Build dense learning maps around a continuous S-shaped route while keeping every label, track, and category editable in Draw.io.
 
+## Related skills (routing)
+
+| Need | Skill |
+|------|--------|
+| Dense poster / S-shaped dual-color track knowledge map | **this skill (snake)** |
+| Presentation stage cards, 3–7 nodes, talk-through slides | `drawio-roadmap-ppt` |
+| Strict learning order, unit title + subtitle, swimlanes | `drawio-roadmap-swimlane` |
+
+If unsure, ask which style they want, or offer ppt for presentation, swimlane for course order, and snake for poster density.
+
 ## Workflow
 
  1. Define the route order and group the content into 3–6 major stages.

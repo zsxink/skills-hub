@@ -188,7 +188,9 @@ function analyzeAndBuildReportData(boards, indices) {
   let sentiment = '中性';
   try {
     const shChange = parseFloat((indices.sh_index_change || '0%').replace('%', ''));
-    sentiment = shChange > 0 ? '偏多' : '偏空';
+    if (shChange > 0) sentiment = '偏多';
+    else if (shChange < 0) sentiment = '偏空';
+    // shChange === 0 stay '中性'
   } catch {
     sentiment = '中性';
   }
@@ -219,7 +221,7 @@ function analyzeAndBuildReportData(boards, indices) {
  * 生成Markdown报告
  */
 function generateReport(boardData) {
-  const today = new Date().toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '年').replace('年', '年').replace(/年(\d{2})$/, '月$1日');
+  const today = new Date().toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '年').replace(/(\d{2})$/, '月$1日');
 
   let report = `# 📊 A股市场日报
 **${today}**
