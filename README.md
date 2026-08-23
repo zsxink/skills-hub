@@ -23,6 +23,21 @@
 | drawio-roadmap-swimlane | Draw.io 泳道流学习路线图 | 🏊 泳道分阶段 · ➡️ 方向箭头 · 📋 单元卡片 · 🔗 学习顺序 |
 | drawio-roadmap-snake | Draw.io 蛇形学习路线图 | 🐍 S形轨道 · 🎨 双层色带 · 🏷️ 优先级标记 · 📐 原生弧形弯道 |
 | cornell-notes-prompt | 康奈尔笔记信息图提示词生成器 | 📝 康奈尔版式 · 🎨 ChatGPT提示词 · 📚 学习主题填充 · 🖼️ 信息图生成 |
+| handbook-paper-writer | 橙皮书风格技术教学书写作套件（1 主技能 + 14 专项） | 📖 七态流水线（立项→研究→大纲→逐章→成书→修订）· ✍️ 写审分离 · 🚪 六道门禁 · 📦 发布层 · 🔄 落盘续写 |
+| handbook-topic-research | 选题·受众·证据研究（handbook 专项） | 🎯 受众画像 · 📏 取数口径 · 🏷️ 证据分级 · ⏱️ 时效快照 |
+| handbook-metaphor-research | 隐喻母体·类比库研究（handbook 专项） | 🧩 隐喻母体 · 🔗 子喻对照 · ⚠️ 失真点清单 |
+| handbook-outline | 大纲·结构骨架（handbook 专项） | 🗺️ 三幕路线图 · 🦴 逐章 skeleton · 📐 系列骨架 |
+| handbook-draft | 正文·钩子·说人话（handbook 专项） | 🪝 开场钩子 · 🪜 递进披露 · 💬 口语化讲解 |
+| handbook-code | 代码+双栏注释（handbook 专项） | 💻 可复制教具 · 📝 中文注释 · ✅ 可核证 |
+| handbook-layout | 版式·callout·表格（handbook 专项） | 📊 三件套版式 · 🗂️ 维度对照表 · 💡 单一样式 callout |
+| handbook-diagram | 纯文本图示（handbook 专项） | 🌲 ASCII 树 · ➡️ 箭头链路 · 📋 层级可视化 |
+| handbook-anti-slop | 人味诊断镜子（handbook 专项） | 🔍 具体度 · ⚖️ 判断浓度 · 📍 在场感 · 🚫 三红线 |
+| handbook-gate-structure | 结构门禁（handbook 专项） | 🏗️ 章题/首句/小节/契约/骨架卡控 |
+| handbook-gate-plain | 说人话门禁（handbook 专项） | 💬 已知推未知 · 🔗 类比失真 · ❓ 天真反问 |
+| handbook-gate-consistency | 一致性门禁（handbook 专项） | 🎙️ 系列声音 · 📖 术语纪律 · 🔗 跨章织网 |
+| handbook-gate-fact | 事实门禁（handbook 专项） | 🔢 取数口径 · 🏷️ 证据分级 · ⏱️ 时效一致 |
+| handbook-gate-reader | 真人读者门禁（handbook 专项） | 👤 读者画像通读 · 🧱 理解/顺序/动机卡点 |
+| handbook-gate-reread | 冷却重读门禁（handbook 专项） | ❄️ 冷却后重读 · 🧩 逻辑/节奏/深浅/收束 |
 
 ## 🚀 技能安装
 
