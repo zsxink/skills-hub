@@ -221,7 +221,7 @@ function analyzeAndBuildReportData(boards, indices) {
  * 生成Markdown报告
  */
 function generateReport(boardData) {
-  const today = new Date().toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '年').replace(/(\d{2})$/, '月$1日');
+  const today = new Date().toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//, '年').replace(/\//, '月').replace(/(\d{2})$/, '$1日');
 
   let report = `# 📊 A股市场日报
 **${today}**
